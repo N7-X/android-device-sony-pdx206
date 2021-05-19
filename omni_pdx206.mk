@@ -16,23 +16,29 @@
 # limitations under the License.
 #
 
-# Inherit from those products. Most specific first.
-$(call inherit-product, $(SRC_TARGET_DIR)/product/core_64_bit.mk)
-$(call inherit-product-if-exists, $(SRC_TARGET_DIR)/product/embedded.mk)
-$(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
-$(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)
+# Release name
+PRODUCT_RELEASE_NAME := pdx206
 
-# Inherit from pdx206 device
+$(call inherit-product, $(SRC_TARGET_DIR)/product/core_minimal.mk)
+
+# Inherit from our custom product configuration
+$(call inherit-product, vendor/omni/config/common.mk)
+
+# Inherit from hardware-specific part of the product configuration
 $(call inherit-product, device/sony/pdx206/device.mk)
 
-# Inherit some common Omni stuff.
-$(call inherit-product, vendor/omni/config/common.mk)
-$(call inherit-product, vendor/omni/config/gsm.mk)
-
-# Device identifier. This must come after all inclusions
+## Device identifier. This must come after all inclusions
 PRODUCT_DEVICE := pdx206
 PRODUCT_NAME := omni_pdx206
 PRODUCT_BRAND := Sony
-PRODUCT_MODEL := Sony
-PRODUCT_MANUFACTURER := sony
-PRODUCT_RELEASE_NAME := Sony Sony
+PRODUCT_MODEL := XQ-AS62
+PRODUCT_MANUFACTURER := Sony
+
+PRODUCT_BUILD_PROP_OVERRIDES += \
+    PRODUCT_NAME=Xperia5II \
+    BUILD_PRODUCT=Xperia5II \
+    TARGET_DEVICE=Xperia5II
+
+# HACK: Set vendor patch level
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.vendor.build.security_patch=2099-12-31
