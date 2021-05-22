@@ -25,6 +25,10 @@
 # ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
 
+on early-init
+    exec u:r:vendor_modprobe:s0 -- /vendor/bin/modprobe -a -d /vendor/lib/modules/ \
+    sec_touchscreen
+
 on fs
     wait /dev/block/platform/soc/${ro.boot.bootdevice}
     symlink /dev/block/platform/soc/${ro.boot.bootdevice} /dev/block/bootdevice
@@ -115,6 +119,7 @@ service ldconfigtxt /system/bin/touch /sbin/ld.config.txt
     seclabel u:r:recovery:s0
 
 on boot
+    write /sys/devices/virtual/sec/tsp/after_work 1
 	export LD_CONFIG_FILE /sbin/ld.config.txt
     setprop sys.usb.config adb
     write /proc/touchpanel/gesture_enable 1

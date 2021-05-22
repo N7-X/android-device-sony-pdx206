@@ -147,6 +147,7 @@ TARGET_USE_CUSTOM_LUN_FILE_PATH := /config/usb_gadget/g1/functions/mass_storage.
 TARGET_RECOVERY_PIXEL_FORMAT := BGRA_8888
 TW_NO_SCREEN_BLANK := true
 TW_USE_TOOLBOX := true
+TARGET_SUPPORTS_64_BIT_APPS := true
 
 # Use mke2fs to create ext4 images
 TARGET_USES_MKE2FS := true
