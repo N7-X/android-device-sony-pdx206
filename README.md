@@ -6,6 +6,6 @@
 Tested:
 <ul>
   <li>ADB</li>
-  <li>Touchscreen - must be started from ADB</li>
+  <li>Touchscreen</li>
 </ul>
 
